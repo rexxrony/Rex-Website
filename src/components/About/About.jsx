@@ -1,5 +1,5 @@
 import React from 'react';
-import rexImage from '/Users/rexronyjacob/Documents/RexRonyJacob/rexPortfolio/src/assets/rex.jpg';
+import rexImage from '../../assets/rex.jpg';
 import styles from './About.module.css';
 
 export const About = () => {

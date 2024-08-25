@@ -1,6 +1,6 @@
 
 .background {
-    background-image: url("/src/assets/bg.jpg");
+    background-image: url("../../assets/bg.jpg");
     min-height: 500px;
     background-attachment: fixed;
     background-position: center;
