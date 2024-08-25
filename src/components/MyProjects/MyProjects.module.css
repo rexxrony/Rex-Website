@@ -1,0 +1,137 @@
+
+.background {
+    background-image: url("/src/assets/bg.jpg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .projectsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-around;
+      align-items: stretch;
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+    
+    .projectCard {
+      background-color: transparent;
+      border-radius: 30px;
+      border: 0.01px solid rgb(92, 92, 92);
+      padding: 20px;
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 1s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .projectCard:hover {
+      transform: scale(1.1);
+    }
+    
+    .projectImage {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    
+    .title {
+      display: flex;
+      font-family: "Roboto Mono", monospace;
+      align-items: center;
+      justify-content: center;
+      font-weight: 200;
+      transition: color 0.5s ease, letter-spacing 0.5s ease;
+    }
+    .title:hover {
+     color: gray;
+     letter-spacing: 1px;
+    }
+    
+    .projectTitle {
+      font-size: larger;
+      color: rgb(255, 255, 255);
+      margin: 10px 0;
+      font-family: "Roboto Mono", monospace;
+      transition: letter-spacing 1s ease;
+    }
+    .projectTitle:hover{
+      letter-spacing: 0.5px;
+    }
+    
+    .projectDescription {
+      font-size: 1.3vw;
+      font-weight: 100;
+      font-family: "Roboto Mono", monospace;
+      color: #ffffff;
+      flex-grow: 1;
+      transition: letter-spacing 1s ease;
+    }
+    .projectDescription:hover{
+      letter-spacing: 0.5px;
+    }
+    .projectSoftware{
+      font-family: "Roboto Mono", monospace;
+      color: #b1b1b1;
+      font-size: 1vw;
+      font-weight: 100;
+      transition: letter-spacing 1s ease;
+  
+    }
+    .projectSoftware:hover{
+      letter-spacing: 0.5px;
+    }
+    
+    .projectLink {
+      text-decoration: none;
+      color: black;
+      background-color: #fff;
+      font-family: "Roboto Mono", monospace;
+      border: 1px solid black;
+      border-radius: 20px;
+      padding: 10px 20px;
+      transition: color 0.5s ease, background-color 0.5s ease;
+    }
+    
+    .projectLink:hover {
+      color: #fff;
+      background-color: transparent;
+      border: #fff;
+    }
+    .projectss {
+      font-size: 1.3vw;
+      font-weight: 100;
+      font-family: "Roboto Mono", monospace;
+      color: #ffffff;
+      flex-grow: 1;
+      padding: 7% 7%;
+      transition: letter-spacing 0.5s ease, color 0.5s ease;
+    }
+    .projectss:hover {
+      color: gray;
+      letter-spacing: 0.1px;
+  
+    }
+    @media screen and (max-width: 830px) {
+      .projectss{
+          font-size: 2.8vw;
+          padding-left: 15%;
+          padding-right: 15%;
+      }
+      .projectDescription {
+        font-size: small;
+      }
+      .projectSoftware{
+        font-size: small;
+      }
+      .projectsContainer{
+        padding-left: 15%;
+        padding-right: 15%;
+      }
+    }

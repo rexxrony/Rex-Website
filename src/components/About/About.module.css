@@ -1,0 +1,159 @@
+.container {
+    position: relative;
+    padding: 8vw;
+    z-index: 1;
+ 
+    
+
+}
+
+.title {
+    color: white;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1.5vw;
+    font-weight: 200;
+    margin-bottom: 2vw;
+    text-align: center;
+    transition: color 0.3s ease,letter-spacing 0.3s ease ;
+}
+.title:hover{
+    color: gray;
+    letter-spacing: 0.5px;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column; /* Ensure the contents are stacked vertically */
+    align-items: flex-start;
+    margin-top: 2vw;
+}
+
+.textContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: 2vw; /* Space between text and image */
+}
+
+.intro {
+    color: white;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1.3vw;
+    margin-bottom: 2vw;
+    display: block;
+    font-weight: 100;
+    padding-left: 2vw;
+    transition: color 1s ease, letter-spacing 1s ease;
+}
+.intro:hover{
+    color: gray;
+    letter-spacing: 0.05px;
+}
+.introSmall {
+    display: none;
+    color: white;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1.3vw;
+    margin-bottom: 2vw;
+    font-weight: 100;
+    padding-left: 2vw;
+    transition: color 1s ease, letter-spacing 1s ease;
+}
+.introintroSmall:hover{
+    color: gray;
+    letter-spacing: 0.05px;
+}
+
+
+.skills {
+    list-style-type: none;
+    padding-left: 0;
+    color: white;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1vw;
+    margin-top: 2vw;
+}
+
+.skills li {
+    margin-bottom: 1vw;
+}
+
+.image {
+    width: 20%;
+    filter: saturate(0);
+    transition: filter 2s ease, transform 2s ease;
+    border-radius: 20px;
+}
+.image:hover {
+
+    filter: saturate(1);
+    transform: scale(1.03);
+}
+
+
+.flexContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.skills {
+    width: 100%;
+    padding-left: 0;
+}
+
+.skill1, .skill2, .skill3, .skill4 {
+    color: rgb(255, 255, 255);
+    border: 0.1px solid rgb(61, 61, 61);
+    background-color: transparent;
+    border-radius: 20px;
+    padding: 20px 30px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.skill1:hover, .skill2:hover, .skill3:hover, .skill4:hover {
+    color: rgb(0, 0, 0);
+    border: 0.1px solid rgb(255, 255, 255);
+    background-color: white;
+}
+
+
+.skill1 p, .skill2 p, .skill3 p , .skill4 p{
+    font-family:  "Roboto Mono", monospace;
+    font-weight: 100;
+    transition: letter-spacing 1s ease;
+}
+.skill1 p:hover, .skill2 p:hover, .skill3 p:hover , .skill4 p:hover{
+    letter-spacing: 2px;
+}
+.skill1 b, .skill2 b, .skill3 b , .skill4 b{
+    font-family:  "Roboto Mono", monospace;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 830px){
+
+    .title{
+        font-size: larger;
+    }
+    .intro{
+        font-size: small;
+        display: none;
+    }
+    .introSmall{
+        font-size: 2.9vw;
+        display: block;
+    }
+    .image{
+        width: 32vw;
+    }
+    .skill1 p, .skill2 p, .skill3 p , .skill4 p{
+        font-size: 2vw;
+
+    }
+    .skill1 b, .skill2 b, .skill3 b , .skill4 b{
+        font-size: 3vw;
+    }
+    
+}

@@ -1,0 +1,154 @@
+
+.container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    background-image: url("/src/assets/bg.jpg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 1;  
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 99px;
+}
+
+.title{
+    font-size: 8vw;
+    font-weight: 900;
+    font-family: "Roboto Mono",monospace;
+    margin-bottom: 10px;
+    transition: color 1s ease,letter-spacing 1s ease;
+    
+}
+
+.title2{
+    font-size: 8vw;
+    font-weight: 900;
+    font-family: "Roboto Mono",monospace;
+    margin-bottom: 10px;
+    margin-left: 50%;
+    transition: color 1s ease,letter-spacing 1s ease;
+    
+}
+.title:hover,.title2:hover{
+    color: rgb(107, 107, 107);
+    letter-spacing: 1px;
+}
+.body,.body2{
+    font-family: "Roboto Mono",monospace;
+    font-weight: 100;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+    transition: color 1s ease, letter-spacing 1s ease;
+
+}
+.body{
+    font-size: 3.5vw;
+    color: white;
+}
+.body:hover {
+    background: radial-gradient(circle at center center, #12C2E9 0%, #c471ed 50%, #f64f59 100%);
+    background-clip: text; 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.body2:hover{
+    color: grey;
+    letter-spacing: 1px;
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+
+.socials{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-self: center;
+    margin-left: 22vw;
+
+}
+.git, .linkedIn, .insta, .yt{
+    align-items: center;
+    color: white;
+    font-size: small;
+    text-decoration: none;
+    font-family: "Roboto Mono",monospace;
+    border: 0.5px solid rgb(83, 81, 81);
+    border-radius: 30px;
+    padding: 10px 20px;
+    transition: color 0.3s ease, background-color 0.3s ease,letter-spacing 1s ease;
+
+}
+.git:hover, .linkedIn:hover, .insta:hover, .yt:hover{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    letter-spacing: 1px;
+}
+
+
+
+@media screen and (max-width: 830px){
+    .container{
+        flex-direction: column-reverse;
+    }
+    .content{
+        align-items: center;
+    }
+    .title,.title2{
+        font-size: 11vw;
+        margin-left: 0;
+    }
+    .body{
+        font-size: 6vw;
+    }
+    .body2{
+        font-size: 1.95vw;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    
+    .socials{
+        list-style: none;
+        display: flex;
+        gap: 10px;
+        align-self: center;
+        margin-left: 1vw;
+
+        
+    }
+    .git, .linkedIn, .insta, .yt{
+
+        font-size: 1.9vw;
+        text-decoration: none;
+        font-family: "Roboto Mono",monospace;
+        border: 0.5px solid rgb(69, 69, 69);
+        border-radius: 30px;
+        padding: 10px 10px;
+    
+    }
+    
+
+
+
+}

@@ -1,0 +1,56 @@
+.navbar{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: 0 10%; /*vertical and horizontal*/
+}
+.title{
+    font-size: 20px;
+    font-weight: 100;
+    text-decoration: none;
+    color: white;
+    font-family: "Roboto Mono", monospace;
+    transition: color 0.3s ease;
+    transition: word-spacing 0.3s ease;
+}
+.title:hover{
+    background: radial-gradient(circle at center center, #12C2E9 0%, #c471ed 50%, #f64f59 100%);
+    background-clip: text; 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    word-spacing: 15px;
+    font-weight: 400;
+
+
+}
+  
+  .menuItem {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    
+  }
+  .menuItem a{
+   color: white;
+   font-weight: 100;
+   text-decoration: none;
+   font-family:"Roboto Mono", monospace;
+   transition: color 0.3s ease;
+   transition: letter-spacing 0.3s ease;
+  }
+  .menuItem a:hover{
+    color: #696868;
+    letter-spacing: 0.5px;
+
+   }
+   @media screen and (max-width: 830px){
+    .title{
+        font-size: 5vw;
+    }
+    .navbar{
+        font-size: 3vw;
+    }
+   }

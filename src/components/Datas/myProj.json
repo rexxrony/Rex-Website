@@ -1,0 +1,21 @@
+[
+    {
+        "projName": "iOS Card Game",
+        "projDesc": "This is a war card game with 2 player, implemented using Swift iOS",
+        "software": "Xcode / Swift",
+        "link":"https://github.com/rexxrony/Card-Swift-Game"
+    },
+    {
+        "projName": "EverTrack",
+        "projDesc": "Vehicle tracking and theft prevention system implemented using Blockchain",
+        "software": "Solidity / Python / React",
+        "link": "https://github.com/syed-ayub/Evertrack"
+    },
+    {
+        "projName": "PharmaC",
+        "projDesc": "Pharmacy management software for allegry tracking and medicine dispense",
+        "software": "Java / Springboot / MySQL ",
+        "link": "https://github.com/rexxrony/PharmaC"
+    }
+    
+]

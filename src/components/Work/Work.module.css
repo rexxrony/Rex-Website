@@ -1,0 +1,105 @@
+.title{
+    color: white;
+    font-family: "Roboto Mono",monospace;
+    padding-left: 75%;
+    transition: color 0.5s ease,    letter-spacing 0.5s ease;
+    font-weight: 100;
+    font-size: 2.5vw;
+    padding-bottom: 2%;
+    
+}
+.title:hover{
+    color: gray;
+    letter-spacing: 1px;
+
+}
+
+.line{
+    opacity: 10%;
+}
+.years-exp-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+
+.topRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-left: 5%;
+    padding-top: 3%;
+
+}
+
+.year1 {
+    font-size: 1.3vw;
+    font-weight: 200;
+    color: white;
+    font-family: "Roboto Mono", monospace;
+    transition: color 0.5s ease, letter-spacing 0.5s ease;
+
+}
+.year2 {
+    font-size: 1.0vw;
+    font-weight: 100;
+    color: white;
+    font-family: "Roboto Mono", monospace;
+    padding-left: 5%;
+    padding-bottom: 2%;
+    transition: color 0.5s ease, letter-spacing 0.5s ease;
+}
+
+.company-domain {
+    display: flex;
+    flex-direction: row;
+    gap: 28vw;
+    align-items: center;
+    padding-right: 5%;
+    
+}
+
+.company-domain .company,
+.company-domain .domain {
+    color: white;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1.3vw;
+    font-weight: 100;
+    transition: color 0.5s ease, letter-spacing 0.5s ease;
+}
+
+.year1:hover,.year2:hover,.domain:hover,.company:hover{
+    letter-spacing: 1px;
+    color: gray;
+}
+
+@media screen and (max-width: 830px){
+    .line{
+        opacity: 5%;
+
+    }
+    .title{
+        padding-left: 65%;
+        padding-top: 45px;
+        font-size: larger;
+    }
+    .year1{
+        font-size: 2.4vw
+    }
+
+    .year2{
+        font-size: 1.5vw;
+    }
+    .company-domain .company,
+    .company-domain .domain {
+        font-size: 2.4vw;
+    }
+    .company-domain {
+        gap: 13vw;
+
+        
+    }
+}
+
+

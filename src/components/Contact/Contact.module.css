@@ -1,0 +1,68 @@
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: transform 1s ease;
+    margin-bottom: 65px;
+}
+.contact:hover{
+    transform: scale(1.1);
+}
+
+.forms {
+    color: rgb(59, 40, 40);
+    border-radius: 8px;
+    padding: 25px;
+    margin: 35px;
+    background: white;
+    width: 100%;
+    max-width: 600px;
+}
+
+.forms label {
+    color: rgb(0, 0, 0);
+    font-family: "Roboto Mono";
+    display: block;
+    margin-bottom: 5px;
+}
+
+.forms input,
+.forms textarea {
+    width: 100%;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 20px;
+    outline: none;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.forms textarea {
+    height: 100px;
+    resize: none;
+}
+
+.forms h2 {
+    color: rgb(0, 0, 0);
+    font-family: "Roboto Mono";
+    margin-bottom: 20px;
+}
+
+.button {
+    display: block;
+    margin: 20px auto 0;
+    color: rgb(255, 255, 255);
+    background-color: black;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-family: "Roboto Mono";
+    cursor: pointer;
+    transition: color 0.5s ease, background-color 0.5s ease;
+}
+
+.button:hover {
+    color: black;
+    background-color: white;
+}

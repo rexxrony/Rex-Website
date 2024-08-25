@@ -1,0 +1,78 @@
+.container {
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: white;
+}
+
+.contents {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    padding-left: 20px;
+
+}
+
+.logo, .phone, .email {
+    list-style: none;
+    text-decoration: none;
+}
+.logo a, .phone a, .email a {
+    font-size: 0.9vw;
+    font-family: "Roboto Mono";
+    list-style: none;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    transition: color 0.5s ease, letter-spacing 0.5s ease;
+}
+.logo a:hover{
+    color: rgb(109, 109, 109);
+    letter-spacing: 2px;
+
+
+}
+.phone a:hover, .email a:hover {
+
+    color: rgb(109, 109, 109);
+    letter-spacing: 2px;
+
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-right: 20px;
+}
+
+.git, .linkedIn, .insta, .yt {
+    color: rgb(0, 0, 0);
+    margin-left: 10px;
+    transition: color 0.5s ease;
+}
+.git:hover, .linkedIn:hover, .insta:hover, .yt:hover {
+    color: rgb(109, 109, 109);
+}
+
+@media screen and (max-width: 830px){
+    .logo a, .phone a, .email a {
+        font-size: 1.9vw;
+    }
+    .logo a:hover{
+        color: rgb(109, 109, 109);
+        letter-spacing: 0.4px;
+    
+    
+    }
+    .phone a:hover, .email a:hover {
+    
+        color: rgb(10, 2, 2);
+        letter-spacing: 0.4px;
+    
+    }
+}
