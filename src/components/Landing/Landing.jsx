@@ -1,9 +1,7 @@
 import React from 'react'
 import styles from './Landing.module.css';
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { FaYoutube } from "react-icons/fa";
 
 export const Landing = () => {
   return (
