@@ -5,10 +5,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: [
-        'react-icons/fa',
-        'sweetalert2'
-      ],
+      external: ['sweetalert2'],
     },
   },
 });
