@@ -15,7 +15,7 @@ export const Work = () => {
                         <div className={styles.domain}>Systems Engineer</div>
                     </div>
                 </div>
-                <div className={styles.year2}>2 years 3 months</div>
+                <div className={styles.year2}>2 years</div>
             </div>
             <hr className={styles.line}/>
         </div>
