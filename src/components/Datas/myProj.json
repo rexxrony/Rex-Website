@@ -1,5 +1,19 @@
 [
     {
+        "projName": "Street Syntax",
+        "projDesc": "An e-commerce platform focused on delivering a streamlined shopping experience.",
+        "software": "Java / Springboot / MySQL ",
+        "link": "https://github.com/rexxrony/StreetSyntax"
+    },
+    
+    {
+        "projName": "PharmaC",
+        "projDesc": "Pharmacy management software for allegry tracking and medicine dispense",
+        "software": "Java / Springboot / MySQL ",
+        "link": "https://github.com/rexxrony/PharmaC"
+    },
+    
+    {
         "projName": "iOS Card Game",
         "projDesc": "This is a war card game with 2 player, implemented using Swift iOS",
         "software": "Xcode / Swift",
@@ -10,12 +24,6 @@
         "projDesc": "Vehicle tracking and theft prevention system implemented using Blockchain",
         "software": "Solidity / Python / React",
         "link": "https://github.com/syed-ayub/Evertrack"
-    },
-    {
-        "projName": "PharmaC",
-        "projDesc": "Pharmacy management software for allegry tracking and medicine dispense",
-        "software": "Java / Springboot / MySQL ",
-        "link": "https://github.com/rexxrony/PharmaC"
     }
-    
+
 ]
