@@ -1,16 +1,17 @@
 [
-    {
-        "projName": "Street Syntax",
-        "projDesc": "An e-commerce platform focused on delivering a streamlined shopping experience.",
-        "software": "Java / Springboot / MySQL ",
-        "link": "https://github.com/rexxrony/StreetSyntax"
-    },
     
     {
         "projName": "PharmaC",
         "projDesc": "Pharmacy management software for allegry tracking and medicine dispense",
         "software": "Java / Springboot / MySQL ",
         "link": "https://github.com/rexxrony/PharmaC"
+    },
+    
+     {
+        "projName": "Street Syntax",
+        "projDesc": "An e-commerce platform focused on delivering a streamlined shopping experience.",
+        "software": "Java / Springboot / MySQL ",
+        "link": "https://github.com/rexxrony/StreetSyntax"
     },
     
     {
