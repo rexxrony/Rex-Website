@@ -1,0 +1,22 @@
+{
+  "intro": "I am Full-Stack developer with a background in Java Spring Boot, MySQL, and React. While being exposed practically to the design and deployment of strong web applications, I could familiarize myself with the development of efficient and scalable solutions. My experience covers backend development, database management, and frontend design, thus enabling me to develop fully fledged software products. I am passionate about making breakthrough, user-oriented applications, realizing that my journey to acquire knowledge and upgrade my skills is endless in the ever-evolving field of software development.",
+  "introSmall": "I am Full-Stack developer with a background in Java Spring Boot, MySQL, and React. While being exposed practically to the design and deployment of strong web applications, I could familiarize myself with the development of efficient and scalable solutions.",
+  "skills": [
+    {
+      "title": "Front-end",
+      "description": "JavaScript / HTML / CSS / React / Bootstrap"
+    },
+    {
+      "title": "Back-end",
+      "description": "Java / SpringBoot / MySql / Microservices / Swift iOS"
+    },
+    {
+      "title": "Testing",
+      "description": "Selenium (Java) / REST API / Karate"
+    },
+    {
+      "title": "Other Skills",
+      "description": "Adobe Photoshop / Adobe After Effects / Apple Final Cut Pro X / Cinematography / Photography"
+    }
+  ]
+}

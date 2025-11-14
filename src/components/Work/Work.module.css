@@ -6,31 +6,34 @@
     font-weight: 100;
     font-size: 2.5vw;
     padding-bottom: 2%;
-    
 }
 .title:hover{
     color: gray;
     letter-spacing: 1px;
-
 }
 
 .line{
-    opacity: 10%;
+    opacity: 100%;
+    border: none;
+    border-top: 1px solid #ffffff0f;
+    margin: 1rem 0;
 }
+
 .years-exp-container {
     display: flex;
     flex-direction: column;
     gap: 0.5vw;
+    padding-bottom: 1.2rem; /* spacing after each job */
 }
 
 .topRow {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
     padding-left: 5%;
+    padding-right: 5%;
     padding-top: 3%;
-
+    gap: 1rem;
 }
 
 .year1 {
@@ -39,45 +42,64 @@
     color: white;
     font-family: "Roboto Mono", monospace;
     transition: color 0.5s ease, letter-spacing 0.5s ease;
-
 }
 .year2 {
     font-size: 1.0vw;
     font-weight: 100;
     color: white;
     font-family: "Roboto Mono", monospace;
-    padding-left: 5%;
     padding-bottom: 2%;
     transition: color 0.5s ease, letter-spacing 0.5s ease;
 }
 
-.company-domain {
+.leftCol {
     display: flex;
-    flex-direction: row;
-    gap: 28vw;
-    align-items: center;
-    padding-right: 5%;
-    
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 16ch;
+    gap: 0.4rem;
 }
 
+.centerCol {
+    flex: 1 1 auto; /* spacer */
+}
+
+.rightCol {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    min-width: 18ch;
+    gap: 0.2rem;
+}
+
+/* keep compatibility for any lingering selectors */
 .company-domain .company,
 .company-domain .domain {
+    display: none;
+}
+
+.company,
+.domain {
     color: white;
     font-family: "Roboto Mono", monospace;
     font-size: 1.3vw;
     font-weight: 100;
-    transition: color 0.5s ease, letter-spacing 0.5s ease;
+    transition: color 0.5s ease;
 }
 
-.year1:hover,.year2:hover,.domain:hover,.company:hover{
-    letter-spacing: 1px;
+.company {
+    font-weight: 700; /* bold company */
+}
+
+.year1:hover, .year2:hover, .domain:hover, .company:hover {
+    /* keep hover color change but do not alter letter-spacing */
     color: gray;
 }
 
 @media screen and (max-width: 830px){
     .line{
         opacity: 5%;
-
     }
     .title{
         padding-left: 65%;
@@ -90,15 +112,20 @@
 
     .year2{
         font-size: 1.5vw;
+        min-width: auto;
     }
-    .company-domain .company,
-    .company-domain .domain {
+    .company,
+    .domain {
         font-size: 2.4vw;
+        text-align: right;
     }
-    .company-domain {
-        gap: 13vw;
-
-        
+    .centerCol {
+        gap: 0.2rem;
+    }
+    .rightCol {
+        min-width: auto;
+        align-items: flex-end;
+        padding-right: 5%;
     }
 }
 
