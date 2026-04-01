@@ -1,10 +1,12 @@
-import React from 'react';
-import rexImage from '../../assets/rex.jpg';
-import styles from './About.module.css';
-import aboutData from '../Datas/about.json';
+import rexImage from '../../assets/rex.jpg'
+import AnimatedContent from '../AnimatedContent/AnimatedContent'
+import TiltedCard from '../TiltedCard/TiltedCard'
+import { TextReveal } from '../ui/TextReveal'
+import styles from './About.module.css'
+import aboutData from '../Datas/about.json'
 
 export const About = () => {
-  const skillClasses = ['skill1', 'skill2', 'skill3', 'skill4'];
+  const skillClasses = ['skill1', 'skill2', 'skill3', 'skill4']
 
   return (
     <section id="about" className={styles.container}>
@@ -13,26 +15,54 @@ export const About = () => {
         <div className={styles.flexContainer}>
           <div className={styles.textContent}>
             <p className={styles.intro}>
-              {aboutData.intro.split('\n').map((line, idx) => (
-                <React.Fragment key={idx}>
-                  {line}
-                  {idx < aboutData.intro.split('\n').length - 1 && <br />}
-                </React.Fragment>
-              ))}
+              <TextReveal duration={0.34} stagger={10} threshold={0.06}>
+                {aboutData.intro}
+              </TextReveal>
             </p>
-            <p className={styles.introSmall}>{aboutData.introSmall}</p>
+            <p className={styles.introSmall}>
+              <TextReveal duration={0.3} stagger={9} threshold={0.06}>
+                {aboutData.introSmall}
+              </TextReveal>
+            </p>
           </div>
-          <img className={styles.image} src={rexImage} alt="Rex Rony Jacob" />
+          <div className={styles.imageWrap}>
+            <TiltedCard
+              imageSrc={rexImage}
+              altText="Rex Rony Jacob"
+              containerHeight="100%"
+              containerWidth="100%"
+              imageHeight="100%"
+              imageWidth="100%"
+              rotateAmplitude={12}
+              scaleOnHover={1.05}
+              showMobileWarning={false}
+              showTooltip={false}
+              displayOverlayContent={false}
+            />
+          </div>
         </div>
         <ul className={styles.skills}>
           {aboutData.skills.map((skill, idx) => (
-            <li key={idx} className={styles[skillClasses[idx]]}>
-              <b>{skill.title}</b>
-              <p>{skill.description}</p>
-            </li>
+            <AnimatedContent
+              key={idx}
+              distance={80}
+              direction="vertical"
+              duration={0.8}
+              ease="power3.out"
+              initialOpacity={0}
+              animateOpacity
+              scale={0.96}
+              threshold={0.1}
+              delay={idx * 0.08}
+            >
+              <li className={styles[skillClasses[idx]]}>
+                <b>{skill.title}</b>
+                <p>{skill.description}</p>
+              </li>
+            </AnimatedContent>
           ))}
         </ul>
       </div>
     </section>
-  );
-};
+  )
+}

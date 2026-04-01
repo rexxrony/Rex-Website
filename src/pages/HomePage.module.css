@@ -1,0 +1,182 @@
+.home {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: rgb(18, 18, 18);
+  color: white;
+  isolation: isolate;
+}
+
+.backgroundLayer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.88;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+  min-height: 600px;
+  flex: 1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
+  text-align: center;
+  padding: 0 1rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.01rem;
+}
+
+.body {
+  font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 15vw, 14rem);
+  line-height: 0.88;
+  color: white;
+  white-space: nowrap;
+  margin: 0;
+  letter-spacing: 0.06em;
+}
+
+.subBody {
+  font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  line-height: 1;
+  color: white;
+  margin: 0;
+  letter-spacing: 0.18em;
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.linkButton {
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+  font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  border: 0.5px solid rgb(83, 81, 81);
+  border-radius: 30px;
+  padding: 12px 30px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.linkButton:hover {
+  border-color: rgb(107, 107, 107);
+  color: rgb(107, 107, 107);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    min-height: 500px;
+  }
+
+  .content {
+    margin-top: 60px;
+  }
+
+  .body {
+    font-size: clamp(9.6rem, 54vw, 14rem);
+  }
+
+  .subBody {
+    font-size: clamp(2.9rem, 16vw, 4.2rem);
+    letter-spacing: 0.12em;
+  }
+
+  .links {
+    gap: 15px;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .linkButton {
+    font-size: 0.9rem;
+    padding: 10px 25px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    min-height: 550px;
+  }
+
+  .content {
+    margin-top: 70px;
+  }
+
+  .body {
+    font-size: clamp(10rem, 36vw, 14.8rem);
+  }
+
+  .subBody {
+    font-size: clamp(3.3rem, 7.6vw, 5.8rem);
+  }
+
+  .links {
+    gap: 18px;
+  }
+
+  .linkButton {
+    font-size: 1rem;
+    padding: 11px 28px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    min-height: 500px;
+  }
+
+  .content {
+    margin-top: 80px;
+  }
+
+  .linkButton {
+    font-size: 1rem;
+    padding: 12px 32px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .linkButton {
+    font-size: 1.1rem;
+    padding: 12px 35px;
+  }
+}

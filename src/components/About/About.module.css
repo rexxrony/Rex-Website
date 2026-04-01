@@ -2,8 +2,8 @@
     position: relative;
     padding: 8vw;
     z-index: 1;
- 
-    
+
+
 
 }
 
@@ -78,16 +78,10 @@
     margin-bottom: 1vw;
 }
 
-.image {
+.imageWrap {
     width: 20%;
-    filter: saturate(0);
-    transition: filter 2s ease, transform 2s ease;
-    border-radius: 20px;
-}
-.image:hover {
-
-    filter: saturate(1);
-    transform: scale(1.03);
+    aspect-ratio: 4 / 5;
+    flex-shrink: 0;
 }
 
 
@@ -145,7 +139,7 @@
         font-size: 2.9vw;
         display: block;
     }
-    .image{
+    .imageWrap{
         width: 32vw;
     }
     .skill1 p, .skill2 p, .skill3 p , .skill4 p{

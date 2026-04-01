@@ -1,0 +1,574 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  background: rgb(18, 18, 18);
+}
+
+.loadingMessage,
+.emptyMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  font-size: 1.1rem;
+  color: #666;
+  text-align: center;
+}
+
+.gridGallery {
+  column-count: 2;
+  column-gap: 1rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@media (min-width: 640px) {
+  .gridGallery {
+    column-count: 2;
+    column-gap: 1.2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridGallery {
+    column-count: 3;
+    column-gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .gridGallery {
+    column-count: 4;
+    column-gap: 1.5rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+  background: #000000;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .imageWrapper {
+    margin-bottom: 1.2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .imageWrapper {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.imageWrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.galleryImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.imageWrapper:hover .galleryImage {
+  transform: scale(1.05);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease-out;
+}
+
+.imageWrapper:hover .imageOverlay {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeInLightbox 0.3s ease-out;
+  padding: 2rem;
+}
+
+@keyframes fadeInLightbox {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+
+  to {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+}
+
+.lightboxImage {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  animation: fadeSwap 0.35s ease;
+}
+
+@media (min-width: 768px) {
+  .lightboxImage {
+    max-width: 80vw;
+    max-height: 80vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lightboxImage {
+    max-width: 70vw;
+    max-height: 70vh;
+  }
+}
+
+@keyframes fadeSwap {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgb(238, 238, 238);
+  font-size: 1.2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+@media (min-width: 768px) {
+  .closeButton {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .closeButton {
+    top: 2rem;
+    right: 2rem;
+  }
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.prevButton,
+.nextButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+.prevButton:hover:not(:disabled),
+.nextButton:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prevButton:disabled,
+.nextButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.prevButton {
+  left: 1rem;
+}
+
+.nextButton {
+  right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .prevButton {
+    left: 1.5rem;
+  }
+
+  .nextButton {
+    right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prevButton {
+    left: 2rem;
+  }
+
+  .nextButton {
+    right: 2rem;
+  }
+}
+
+.loadMoreButton {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 0.8rem 2rem;
+  background: #000000;
+  color: #f5f5f5;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 12px 30px rgba(0, 0, 0, 0.22);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .loadMoreButton {
+    margin: 2.5rem auto 0;
+    padding: 0.9rem 2.5rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .loadMoreButton {
+    margin: 3rem auto 0;
+    padding: 1rem 2.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+.loadMoreButton:hover {
+  background: #0d0d0d;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.38);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 16px 36px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.profileHeader {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  padding: 1.5rem 1rem;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  border-bottom: 1px solid #e9e9ee;
+  box-shadow: 0 18px 60px rgba(8, 8, 14, 0.08);
+}
+
+@media (min-width: 768px) {
+  .profileHeader {
+    padding: 1.5rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profileHeader {
+    padding: 2rem;
+  }
+}
+
+.profileContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .profileContent {
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profileContent {
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.profilePic {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profilePicWrapper {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.profilePicWrapper:hover .profilePic {
+  transform: scale(1.01);
+}
+
+@media (min-width: 768px) {
+  .profilePicWrapper {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profilePicWrapper {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.iconButton {
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 50%;
+  border: 1px solid #000000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  background: #ffffff;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.iconButton:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .headerInfo {
+    gap: 1.5rem;
+    flex-wrap: nowrap;
+  }
+}
+
+.username {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.imageCount {
+  font-size: 0.85rem;
+  color: #7a7a7a;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .username {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .username {
+    font-size: 1.5rem;
+  }
+}
+
+.recentText {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #333;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .recentText {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .recentText {
+    font-size: 0.9rem;
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: rgb(18, 18, 18);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 2rem 1rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 2rem 1.5rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 2.5rem 2rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 3rem 2rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.gallery {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.gallery,
+.loadingMessage,
+.emptyMessage {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .gallery {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .gallery {
+    max-width: 1400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .prevButton,
+  .nextButton {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+
+  .lightbox {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .prevButton,
+  .nextButton {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 0.9rem;
+  }
+
+  .iconButton {
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+
+  .username {
+    font-size: 1rem;
+  }
+}

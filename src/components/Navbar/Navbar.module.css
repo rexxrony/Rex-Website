@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
     padding-top: 30px;
     padding-bottom: 30px;
     margin: 0 10%; /*vertical and horizontal*/
@@ -29,8 +30,12 @@
   
   .menuItem {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     gap: 30px;
     list-style: none;
+    margin: 0;
+    padding: 0;
     
   }
   .menuItem a{
@@ -47,10 +52,39 @@
 
    }
    @media screen and (max-width: 830px){
-    .title{
-        font-size: 5vw;
-    }
     .navbar{
-        font-size: 3vw;
+        margin: 0 6%;
+        padding-top: 22px;
+        padding-bottom: 22px;
+        align-items: flex-start;
+    }
+    .title{
+        font-size: clamp(1.1rem, 5vw, 1.4rem);
+    }
+    .menu{
+        flex: 1 1 auto;
+    }
+    .menuItem{
+        gap: 12px 20px;
+    }
+    .menuItem a{
+        font-size: 0.95rem;
+    }
+   }
+
+   @media screen and (max-width: 540px){
+    .navbar{
+        margin: 0 5%;
+        gap: 12px;
+    }
+    .menu{
+        width: 100%;
+    }
+    .menuItem{
+        justify-content: flex-start;
+        gap: 10px 16px;
+    }
+    .menuItem a{
+        font-size: 0.88rem;
     }
    }

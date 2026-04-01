@@ -5,15 +5,26 @@
     align-items: center;
     justify-content: space-between;
     z-index: 1;
-    background-image: url("../../assets/bg.jpg");
     min-height: 500px;
-    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.container::before{
+    content: "";
+    position: absolute;
+    inset: -10%;
+    background-image: url("../../assets/bg.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    transform: rotate(var(--bg-rotation, 0deg));
+    transform-origin: center;
+    will-change: transform;
+    z-index: 0;
 }
 
 .content{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -43,30 +54,25 @@
 }
 .title:hover,.title2:hover{
     color: rgb(107, 107, 107);
-    letter-spacing: 1px;
+    letter-spacing: 0.2px;
 }
 .body,.body2{
     font-family: "Roboto Mono",monospace;
     font-weight: 100;
     font-size: 15px;
-    white-space: nowrap;
-    overflow: hidden;
-    animation: 
-    typing 3.5s steps(40, end),
-    blink-caret .75s step-end infinite;
     transition: color 1s ease, letter-spacing 1s ease;
-
 }
 .body{
     font-size: 3.5vw;
     color: white;
+    white-space: normal;
 }
 .body:hover {
     background: radial-gradient(circle at center center, #12C2E9 0%, #c471ed 50%, #f64f59 100%);
     background-clip: text; 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: 1px;
+    letter-spacing: 0.1px;
     cursor: pointer;
 }
 
@@ -74,33 +80,56 @@
     color: grey;
     letter-spacing: 1px;
 }
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
-  
+
+.decryptLine,
+.decryptParagraph {
+    display: inline-block;
+}
+
+.decryptParagraph {
+    white-space: normal;
+}
+
+.revealed {
+    color: white;
+}
+
+.encrypted {
+    color: rgba(255, 255, 255, 0.38);
+}
+
+.nameAccent {
+    font-weight: 700;
+}
 
 .socials{
     list-style: none;
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
     align-self: center;
-    margin-left: 22vw;
+    margin: 0;
+    padding: 0;
 
 }
-.git, .linkedIn, .insta, .yt{
+.socialLink{
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
     color: white;
-    font-size: small;
+    font-size: 0.95rem;
     text-decoration: none;
     font-family: "Roboto Mono",monospace;
     border: 0.5px solid rgb(83, 81, 81);
     border-radius: 30px;
-    padding: 10px 20px;
+    min-width: 150px;
+    padding: 12px 20px;
     transition: color 0.3s ease, background-color 0.3s ease,letter-spacing 1s ease;
 
 }
-.git:hover, .linkedIn:hover, .insta:hover, .yt:hover{
+.socialLink:hover{
     color: rgb(0, 0, 0);
     background-color: rgb(255, 255, 255);
     letter-spacing: 1px;
@@ -121,34 +150,24 @@
     }
     .body{
         font-size: 6vw;
+        white-space: normal;
     }
     .body2{
         font-size: 1.95vw;
         margin-left: 20%;
         margin-right: 20%;
+        white-space: normal;
     }
     
     .socials{
-        list-style: none;
-        display: flex;
         gap: 10px;
-        align-self: center;
-        margin-left: 1vw;
-
-        
     }
-    .git, .linkedIn, .insta, .yt{
-
-        font-size: 1.9vw;
-        text-decoration: none;
-        font-family: "Roboto Mono",monospace;
+    .socialLink{
+        min-width: 132px;
+        font-size: 0.82rem;
         border: 0.5px solid rgb(69, 69, 69);
         border-radius: 30px;
-        padding: 10px 10px;
+        padding: 10px 14px;
     
     }
-    
-
-
-
 }

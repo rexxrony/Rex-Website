@@ -1,27 +1,17 @@
 
-import styles from './App.module.css'
-import { About } from './components/About/About'
-import { Contact } from './components/Contact/Contact'
-import { Footer } from './components/Footer/Footer'
-import { Landing } from './components/Landing/Landing'
-import { MyProjects } from './components/MyProjects/MyProjects'
-import { Navbar } from './components/Navbar/Navbar'
-import { Work } from './components/Work/Work'
-
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { DevPage } from './pages/DevPage'
+import { HomePage } from './pages/HomePage'
+import { PhotographyPage } from './pages/PhotographyPage'
 
 function App() {
-
-  return (<>
-  <div className={styles.App}>
-    <Navbar />
-    <Landing />
-    <About />
-    <Work />
-    <MyProjects />
-    <Contact />
-    <Footer />
-    </div>
-  </>
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/dev" element={<DevPage />} />
+      <Route path="/photography" element={<PhotographyPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   )
 }
 

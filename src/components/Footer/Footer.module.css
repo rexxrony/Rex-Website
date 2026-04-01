@@ -1,40 +1,39 @@
 .container {
     position: relative;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
     background-color: white;
+    box-shadow: 0 -12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .contents {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0;
     margin: 0;
-    padding-left: 20px;
-
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .logo, .phone, .email {
-    list-style: none;
     text-decoration: none;
 }
-.logo a, .phone a, .email a {
-    font-size: 0.9vw;
+.logo,
+.phone,
+.email {
+    font-size: clamp(0.88rem, 0.95vw, 1rem);
     font-family: "Roboto Mono";
     list-style: none;
     text-decoration: none;
     color: rgb(0, 0, 0);
     transition: color 0.5s ease, letter-spacing 0.5s ease;
 }
-.logo a:hover{
+.logo:hover{
     color: rgb(109, 109, 109);
     letter-spacing: 2px;
 
 
 }
-.phone a:hover, .email a:hover {
+.phone:hover, .email:hover {
 
     color: rgb(109, 109, 109);
     letter-spacing: 2px;
@@ -43,36 +42,65 @@
 
 .socials {
     display: flex;
-    flex-direction: row;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    padding-right: 20px;
+    align-items: center;
+    gap: 14px;
+    margin-left: auto;
 }
 
-.git, .linkedIn, .insta, .yt {
+.socialLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: rgb(0, 0, 0);
-    margin-left: 10px;
+    font-size: 1.1rem;
     transition: color 0.5s ease;
 }
-.git:hover, .linkedIn:hover, .insta:hover, .yt:hover {
+.socialLink:hover {
     color: rgb(109, 109, 109);
 }
 
 @media screen and (max-width: 830px){
-    .logo a, .phone a, .email a {
-        font-size: 1.9vw;
+    .container {
+        padding: 18px 16px;
     }
-    .logo a:hover{
+    .contents {
+        justify-content: center;
+        text-align: center;
+        gap: 14px 22px;
+    }
+    .logo, .phone, .email {
+        font-size: 0.92rem;
+    }
+    .socials {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+    .logo:hover{
         color: rgb(109, 109, 109);
         letter-spacing: 0.4px;
-    
-    
     }
-    .phone a:hover, .email a:hover {
-    
+    .phone:hover, .email:hover {
         color: rgb(10, 2, 2);
         letter-spacing: 0.4px;
-    
+    }
+}
+
+@media screen and (max-width: 480px){
+    .container {
+        padding: 16px 12px;
+    }
+    .contents {
+        gap: 10px;
+    }
+    .logo, .phone, .email {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+    .socials {
+        gap: 12px;
+    }
+    .socialLink {
+        font-size: 1rem;
     }
 }
