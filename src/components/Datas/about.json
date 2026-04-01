@@ -8,11 +8,15 @@
     },
     {
       "title": "Back-end",
-      "description": "Java / SpringBoot / MySql / Microservices / Swift iOS"
+      "description": "Java / SpringBoot / MySql / Microservices / REST API / Swift iOS"
     },
     {
       "title": "Testing",
-      "description": "Selenium (Java) / REST API / Karate"
+      "description": "Selenium (Java) / Junit"
+    },
+    {
+      "title": "Other Tools",
+      "description": "Git / SonarQube / Jenkins / Postman / IntelliJ / GitHub Copilot"
     },
     {
       "title": "Other Skills",
