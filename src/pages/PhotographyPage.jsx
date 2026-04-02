@@ -30,11 +30,18 @@ export function PhotographyPage() {
           import: 'default',
         })
 
-        const loadedImages = Object.entries(imageModules).map(([path, url]) => ({
-          id: path,
-          src: url,
-          name: path.split('/').pop(),
-        }))
+        const extractNumber = (name) => {
+          const match = name.match(/(\d+)(?=\D*$)/)
+          return match ? parseInt(match[1], 10) : 0
+        }
+
+        const loadedImages = Object.entries(imageModules)
+          .map(([path, url]) => ({
+            id: path,
+            src: url,
+            name: path.split('/').pop(),
+          }))
+          .sort((a, b) => extractNumber(b.name) - extractNumber(a.name))
 
         setImages(loadedImages)
       } catch (error) {
