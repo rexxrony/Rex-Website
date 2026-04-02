@@ -174,7 +174,7 @@
   }
 
   .subBody {
-    font-size: clamp(3.3rem, 7.6vw, 5.8rem);
+    font-size: clamp(2.5rem, 7.6vw, 5.8rem);
   }
 
   .links {

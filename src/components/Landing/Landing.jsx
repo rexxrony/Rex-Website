@@ -98,11 +98,6 @@ export const Landing = () => {
             </a>
           </li>
           <li>
-            <a href="https://www.youtube.com/@rexronyjacob" className={styles.socialLink} target="_blank" rel="noreferrer">
-              <FaYoutube /> Youtube
-            </a>
-          </li>
-          <li>
             <a
               href="https://drive.google.com/file/d/1lFZCAppVJv6vgE45n_A93zv-O-EpbkPu/view?usp=share_link"
               className={styles.socialLink}

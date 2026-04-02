@@ -10,8 +10,9 @@
     align-items: center;
     justify-content: space-between;
     margin: 0;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 20px 2rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
 .logo, .phone, .email {
@@ -26,6 +27,7 @@
     text-decoration: none;
     color: rgb(0, 0, 0);
     transition: color 0.5s ease, letter-spacing 0.5s ease;
+    white-space: nowrap;
 }
 .logo:hover{
     color: rgb(109, 109, 109);
@@ -64,9 +66,9 @@
         padding: 18px 16px;
     }
     .contents {
-        justify-content: center;
-        text-align: center;
-        gap: 14px 22px;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 14px 1.5rem;
     }
     .logo, .phone, .email {
         font-size: 0.92rem;
@@ -92,13 +94,18 @@
     }
     .contents {
         gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
     }
     .logo, .phone, .email {
-        width: 100%;
         font-size: 0.8rem;
     }
     .socials {
         gap: 12px;
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 4px;
     }
     .socialLink {
         font-size: 1rem;

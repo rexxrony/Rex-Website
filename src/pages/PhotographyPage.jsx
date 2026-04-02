@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { FaInstagram, FaYoutube } from 'react-icons/fa'
 import AnimatedContent from '../components/AnimatedContent/AnimatedContent'
+import Grainient from '../components/Grainient/Grainient'
 import { Footer } from '../components/Footer/Footer'
 import { Navbar } from '../components/Navbar/Navbar'
 import profilePic from '../assets/rexcutout.png'
@@ -11,7 +13,14 @@ export function PhotographyPage() {
   const [displayedCount, setDisplayedCount] = useState(16)
   const [selectedImageIndex, setSelectedImageIndex] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [isClient, setIsClient] = useState(false)
+  const [showSwipeHint, setShowSwipeHint] = useState(false)
+  const [hasShownSwipeHint, setHasShownSwipeHint] = useState(false)
   const imagesPerLoad = 16
+  const lightboxRef = useRef(null)
+  const touchStartX = useRef(0)
+
+  useEffect(() => setIsClient(true), [])
 
   useEffect(() => {
     const loadImages = async () => {
@@ -58,11 +67,180 @@ export function PhotographyPage() {
   const displayedImages = images.slice(0, displayedCount)
   const hasMore = displayedCount < images.length
 
+  useEffect(() => {
+    if (selectedImageIndex === null) return
+    const html = document.documentElement
+    const body = document.body
+    const previousHtmlOverflow = html.style.overflow
+    const previousBodyOverflow = body.style.overflow
+
+    html.style.overflow = 'hidden'
+    body.style.overflow = 'hidden'
+
+    return () => {
+      html.style.overflow = previousHtmlOverflow
+      body.style.overflow = previousBodyOverflow
+    }
+  }, [selectedImageIndex])
+
+  useEffect(() => {
+    if (selectedImageIndex === null) return
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'ArrowLeft') {
+        handlePrevious()
+      } else if (event.key === 'ArrowRight') {
+        handleNext()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedImageIndex, handlePrevious, handleNext])
+
+  useEffect(() => {
+    if (selectedImageIndex === null) {
+      setShowSwipeHint(false)
+      return undefined
+    }
+
+    if (typeof window === 'undefined' || window.innerWidth > 640) {
+      setShowSwipeHint(false)
+      return undefined
+    }
+
+    setShowSwipeHint(true)
+    const timer = setTimeout(() => {
+      setShowSwipeHint(false)
+    }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [selectedImageIndex])
+
+  useEffect(() => {
+    if (selectedImageIndex === null) return
+    if (typeof window === 'undefined' || window.innerWidth > 640) return undefined
+
+    const container = lightboxRef.current
+    if (!container) return undefined
+
+    const handleTouchStart = (event) => {
+      touchStartX.current = event.touches[0].clientX
+    }
+
+    const handleTouchEnd = (event) => {
+      const delta = event.changedTouches[0].clientX - touchStartX.current
+      const threshold = 30
+      if (delta > threshold) {
+        handlePrevious()
+      } else if (delta < -threshold) {
+        handleNext()
+      }
+    }
+
+    container.addEventListener('touchstart', handleTouchStart, { passive: true })
+    container.addEventListener('touchend', handleTouchEnd)
+
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart)
+      container.removeEventListener('touchend', handleTouchEnd)
+    }
+  }, [selectedImageIndex, handlePrevious, handleNext])
+
+  useEffect(() => {
+    if (
+      selectedImageIndex === null ||
+      hasShownSwipeHint ||
+      typeof window === 'undefined' ||
+      window.innerWidth > 640
+    ) {
+      setShowSwipeHint(false)
+      return undefined
+    }
+
+    setShowSwipeHint(true)
+    const timer = setTimeout(() => {
+      setShowSwipeHint(false)
+      setHasShownSwipeHint(true)
+    }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [selectedImageIndex, hasShownSwipeHint])
+
+  const lightbox = selectedImage ? (
+    <div ref={lightboxRef} className={styles.lightbox} onClick={() => setSelectedImageIndex(null)}>
+      <button
+        className={styles.closeButton}
+        onClick={(e) => {
+          e.stopPropagation()
+          setSelectedImageIndex(null)
+        }}
+      >
+        ✕
+      </button>
+      <button
+        className={styles.prevButton}
+        onClick={(e) => {
+          e.stopPropagation()
+          handlePrevious()
+        }}
+        disabled={selectedImageIndex === 0}
+      >
+        ❮
+      </button>
+      <img
+        key={selectedImage.id}
+        src={selectedImage.src}
+        alt={selectedImage.name}
+        className={styles.lightboxImage}
+        onClick={(e) => e.stopPropagation()}
+      />
+      <button
+        className={styles.nextButton}
+        onClick={(e) => {
+          e.stopPropagation()
+          handleNext()
+        }}
+        disabled={selectedImageIndex === images.length - 1}
+      >
+        ❯
+      </button>
+      {showSwipeHint && (
+        <div className={styles.swipeHint}>Swipe to navigate</div>
+      )}
+    </div>
+  ) : null
+
   return (
     <div className={styles.page}>
       <Navbar showLinks={false} />
 
       <div className={styles.profileHeader}>
+        <Grainient
+          timeSpeed={0.2}
+          color1="#ffffff"
+          color2="#000000"
+          color3="#7a7a7a"
+          colorBalance={-0.2}
+          warpStrength={1}
+          warpFrequency={5}
+          warpSpeed={2}
+          warpAmplitude={50}
+          blendAngle={0}
+          blendSoftness={0.05}
+          rotationAmount={500}
+          noiseScale={2}
+          grainAmount={0.06}
+          grainScale={2}
+          grainAnimated={false}
+          contrast={1.5}
+          gamma={1}
+          saturation={1}
+          centerX={0}
+          centerY={0}
+          zoom={0.9}
+          className={styles.grainientBackground}
+        />
         <div className={styles.profileContent}>
           <div className={styles.profilePicWrapper}>
             <img src={profilePic} alt="Profile" className={styles.profilePic} />
@@ -137,46 +315,7 @@ export function PhotographyPage() {
         </div>
       </div>
 
-      {selectedImage && (
-        <div className={styles.lightbox} onClick={() => setSelectedImageIndex(null)}>
-          <button
-            className={styles.closeButton}
-            onClick={(e) => {
-              e.stopPropagation()
-              setSelectedImageIndex(null)
-            }}
-          >
-            ✕
-          </button>
-          <button
-            className={styles.prevButton}
-            onClick={(e) => {
-              e.stopPropagation()
-              handlePrevious()
-            }}
-            disabled={selectedImageIndex === 0}
-          >
-            ❮
-          </button>
-          <img
-            key={selectedImage.id}
-            src={selectedImage.src}
-            alt={selectedImage.name}
-            className={styles.lightboxImage}
-            onClick={(e) => e.stopPropagation()}
-          />
-          <button
-            className={styles.nextButton}
-            onClick={(e) => {
-              e.stopPropagation()
-              handleNext()
-            }}
-            disabled={selectedImageIndex === images.length - 1}
-          >
-            ❯
-          </button>
-        </div>
-      )}
+      {isClient && lightbox && createPortal(lightbox, document.body)}
 
       <Footer />
     </div>
