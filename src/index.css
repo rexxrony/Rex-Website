@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
 @import "tailwindcss";
 
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -10,4 +10,14 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+:root {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body {
+  background-color: #121212;
+  color: inherit;
 }

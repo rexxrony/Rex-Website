@@ -1,75 +1,59 @@
-import React, {
-  Children,
-  cloneElement,
-  createContext,
-  isValidElement,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import gsap from 'gsap'
 import styles from './PageTransition.module.css'
-
-export const PageTransitionContext = createContext({
-  freezeHomeDither: false,
-  homeDitherFadeOut: false,
-})
-
-const COVER_DURATION = 400
-const REVEAL_DURATION = 400
 
 export function PageTransition({ children }) {
   const location = useLocation()
   const [displayLocation, setDisplayLocation] = useState(location)
-  const [overlayState, setOverlayState] = useState('idle') // idle | cover | reveal
-  const coverTimerRef = useRef(null)
-  const revealTimerRef = useRef(null)
+  const transitionRef = useRef(null)
+  const hasMounted = useRef(false)
+  const animation = useRef(null)
+  const prevPath = useRef(location.pathname)
 
-  useEffect(() => {
-    if (location.pathname === displayLocation.pathname && location.search === displayLocation.search) {
-      return undefined
+  useLayoutEffect(() => {
+    if (!transitionRef.current) {
+      return
     }
 
-    setOverlayState('cover')
-    if (coverTimerRef.current) window.clearTimeout(coverTimerRef.current)
-    if (revealTimerRef.current) window.clearTimeout(revealTimerRef.current)
+    if (animation.current) {
+      animation.current.kill()
+    }
 
-    coverTimerRef.current = window.setTimeout(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true
+      gsap.set(transitionRef.current, { autoAlpha: 1, xPercent: 0 })
+      prevPath.current = location.pathname
+      return
+    }
+
+    const timeline = gsap.timeline({
+      defaults: { duration: 0.55, ease: 'power3.inOut' },
+    })
+
+    const goingHome = location.pathname === '/' && prevPath.current !== '/'
+    const exitDirection = goingHome ? 100 : -100
+    const enterStart = goingHome ? -100 : 100
+
+    timeline.to(transitionRef.current, { xPercent: exitDirection, autoAlpha: 0 })
+    timeline.add(() => {
       setDisplayLocation(location)
-      setOverlayState('reveal')
-      revealTimerRef.current = window.setTimeout(() => setOverlayState('idle'), REVEAL_DURATION)
-    }, COVER_DURATION)
+      prevPath.current = location.pathname
+    })
+    timeline.set(transitionRef.current, { xPercent: enterStart, autoAlpha: 1 })
+    timeline.to(transitionRef.current, { xPercent: 0 })
+
+    animation.current = timeline
 
     return () => {
-      if (coverTimerRef.current) window.clearTimeout(coverTimerRef.current)
-      if (revealTimerRef.current) window.clearTimeout(revealTimerRef.current)
+      timeline.kill()
+      animation.current = null
     }
-  }, [location, displayLocation])
-
-  const routesElement = useMemo(() => {
-    const childrenArray = Children.toArray(children)
-    const routesChild = childrenArray.find(
-      (child) =>
-        isValidElement(child) &&
-        child.type &&
-        ((child.type.displayName && child.type.displayName === 'Routes') ||
-          child.type.name === 'Routes')
-    )
-
-    if (!routesChild) {
-      return children
-    }
-
-    return cloneElement(routesChild, { location: displayLocation })
-  }, [children, displayLocation])
+  }, [location])
 
   return (
-    <PageTransitionContext.Provider value={{ freezeHomeDither: false, homeDitherFadeOut: false }}>
-      <div className={styles.wrapper}>
-        <div className={`${styles.bar} ${styles[overlayState]}`} />
-        <div className={styles.pages}>{routesElement}</div>
-      </div>
-    </PageTransitionContext.Provider>
+    <div ref={transitionRef} className={styles.transitionWrapper} aria-live="polite">
+      {typeof children === 'function' ? children(displayLocation) : children}
+    </div>
   )
 }

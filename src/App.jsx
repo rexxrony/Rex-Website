@@ -8,12 +8,14 @@ import { PageTransition } from './components/PageTransition/PageTransition'
 function App() {
   return (
     <PageTransition>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/dev" element={<DevPage />} />
-        <Route path="/photography" element={<PhotographyPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      {(displayLocation) => (
+        <Routes location={displayLocation} key={displayLocation.key ?? displayLocation.pathname}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dev" element={<DevPage />} />
+          <Route path="/photography" element={<PhotographyPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      )}
     </PageTransition>
   )
 }
