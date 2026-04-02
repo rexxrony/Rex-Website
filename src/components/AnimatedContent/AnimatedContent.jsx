@@ -25,6 +25,7 @@ export default function AnimatedContent({
   onComplete,
   onDisappearanceComplete,
   className = '',
+  style,
   ...props
 }) {
   const ref = useRef(null)
@@ -118,7 +119,12 @@ export default function AnimatedContent({
   ])
 
   return (
-    <div ref={ref} className={className} style={{ visibility: 'hidden' }} {...props}>
+    <div
+      ref={ref}
+      className={className}
+      style={{ visibility: 'hidden', ...style }}
+      {...props}
+    >
       {children}
     </div>
   )

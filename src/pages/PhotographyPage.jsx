@@ -30,18 +30,47 @@ export function PhotographyPage() {
           import: 'default',
         })
 
+        const loadMeta = async (url) => {
+          return new Promise((resolve) => {
+            const img = new Image()
+            const handleResolve = () => {
+              const width = img.naturalWidth || 1
+              const height = img.naturalHeight || 1
+              resolve({ width, height })
+            }
+
+            img.src = url
+
+            if (img.complete) {
+              handleResolve()
+            } else {
+              img.onload = handleResolve
+              img.onerror = handleResolve
+            }
+          })
+        }
+
         const extractNumber = (name) => {
           const match = name.match(/(\d+)(?=\D*$)/)
           return match ? parseInt(match[1], 10) : 0
         }
 
-        const loadedImages = Object.entries(imageModules)
-          .map(([path, url]) => ({
-            id: path,
-            src: url,
-            name: path.split('/').pop(),
-          }))
-          .sort((a, b) => extractNumber(b.name) - extractNumber(a.name))
+        const entries = Object.entries(imageModules)
+        const loadedImages = await Promise.all(
+          entries.map(async ([path, url]) => {
+            const { width, height } = await loadMeta(url)
+            return {
+              id: path,
+              src: url,
+              name: path.split('/').pop(),
+              width,
+              height,
+              orientation: width >= height ? 'horizontal' : 'vertical',
+            }
+          })
+        )
+
+        loadedImages.sort((a, b) => extractNumber(b.name) - extractNumber(a.name))
 
         setImages(loadedImages)
       } catch (error) {
@@ -292,25 +321,37 @@ export function PhotographyPage() {
           ) : (
             <>
               <div className={styles.gridGallery}>
-                {displayedImages.map((image, index) => (
-                  <AnimatedContent
-                    key={image.id}
-                    className={styles.imageWrapper}
-                    animateOn="load"
-                    distance={40}
-                    direction="vertical"
-                    duration={0.38}
-                    ease="power3.out"
-                    initialOpacity={0}
-                    animateOpacity
-                    scale={0.985}
-                    delay={(index % imagesPerLoad) * 0.015}
-                    onClick={() => setSelectedImageIndex(index)}
-                  >
-                    <img src={image.src} alt={image.name} className={styles.galleryImage} />
-                    <div className={styles.imageOverlay}></div>
-                  </AnimatedContent>
-                ))}
+                {displayedImages.map((image, index) => {
+                  const orientationClass =
+                    image.orientation === 'horizontal'
+                      ? styles.imageWrapperHorizontal
+                      : styles.imageWrapperVertical
+                  const aspectRatioStyle =
+                    image.width && image.height
+                      ? { aspectRatio: `${image.width} / ${image.height}` }
+                      : undefined
+
+                  return (
+                    <AnimatedContent
+                      key={image.id}
+                      className={`${styles.imageWrapper} ${orientationClass}`}
+                      animateOn="load"
+                      distance={40}
+                      direction="vertical"
+                      duration={0.38}
+                      ease="power3.out"
+                      initialOpacity={0}
+                      animateOpacity
+                      scale={0.985}
+                      delay={(index % imagesPerLoad) * 0.015}
+                      onClick={() => setSelectedImageIndex(index)}
+                      style={aspectRatioStyle}
+                    >
+                      <img src={image.src} alt={image.name} className={styles.galleryImage} />
+                      <div className={styles.imageOverlay}></div>
+                    </AnimatedContent>
+                  )
+                })}
               </div>
               {hasMore && (
                 <button className={styles.loadMoreButton} onClick={handleLoadMore}>
