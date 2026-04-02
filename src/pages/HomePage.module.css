@@ -13,7 +13,8 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.88;
+  opacity: 0;
+  animation: homeDitherFade 4.2s ease forwards;
 }
 
 .container {
@@ -46,6 +47,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.01rem;
+  cursor: pointer;
 }
 
 .body {
@@ -57,6 +59,9 @@
   white-space: nowrap;
   margin: 0;
   letter-spacing: 0.06em;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  display: inline-block;
+  transform-origin: center;
 }
 
 .subBody {
@@ -67,6 +72,21 @@
   color: white;
   margin: 0;
   letter-spacing: 0.18em;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  display: inline-block;
+  transform-origin: center;
+}
+
+.nameBlock:hover .body,
+.nameBlock:focus-visible .body,
+.nameBlock:hover .subBody,
+.nameBlock:focus-visible .subBody {
+  transform: scale(1.05);
+  background-image: linear-gradient(90deg, #c7c5c5, #525252);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .links {
@@ -97,6 +117,15 @@
   border-color: rgb(107, 107, 107);
   color: rgb(107, 107, 107);
   letter-spacing: 1px;
+}
+
+@keyframes homeDitherFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.88;
+  }
 }
 
 @media (max-width: 480px) {

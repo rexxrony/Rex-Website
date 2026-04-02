@@ -1,11 +1,29 @@
 
 .background {
-    background-image: url("../../assets/bg.jpg");
+    position: relative;
     min-height: 500px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+.backgroundLayer {
+    position: absolute;
+    inset: 0;
+    background-image: url("../../assets/bg.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    transform-origin: center;
+    transform: scale(var(--bg-scale, 1));
+    transition: transform 0.7s ease;
+    will-change: transform;
+    z-index: 0;
+  }
+
+.foreground {
+    position: relative;
+    z-index: 1;
   }
   .projectsContainer {
       display: flex;
@@ -47,6 +65,8 @@
       align-items: center;
       justify-content: center;
       font-weight: 200;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      letter-spacing: 0.1em;
       transition: color 0.5s ease, letter-spacing 0.5s ease;
     }
     .title:hover {

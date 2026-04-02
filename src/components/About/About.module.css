@@ -97,32 +97,36 @@
     padding-left: 0;
 }
 
-.skill1, .skill2, .skill3, .skill4 {
+.skillCard {
     color: rgb(255, 255, 255);
     border: 0.1px solid rgb(61, 61, 61);
     background-color: transparent;
     border-radius: 20px;
     padding: 20px 30px;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.skill1:hover, .skill2:hover, .skill3:hover, .skill4:hover {
+.skillCard:hover {
     color: rgb(0, 0, 0);
     border: 0.1px solid rgb(255, 255, 255);
     background-color: white;
+    transform: translateY(-4px);
 }
 
-
-.skill1 p, .skill2 p, .skill3 p , .skill4 p{
-    font-family:  "Roboto Mono", monospace;
+.skillCard p {
+    font-family: "Roboto Mono", monospace;
     font-weight: 100;
     transition: letter-spacing 1s ease;
+    margin: 0;
 }
-.skill1 p:hover, .skill2 p:hover, .skill3 p:hover , .skill4 p:hover{
+.skillCard p:hover {
     letter-spacing: 2px;
 }
-.skill1 b, .skill2 b, .skill3 b , .skill4 b{
-    font-family:  "Roboto Mono", monospace;
+.skillCard b {
+    font-family: "Roboto Mono", monospace;
     font-weight: 400;
 }
 
@@ -142,11 +146,10 @@
     .imageWrap{
         width: 32vw;
     }
-    .skill1 p, .skill2 p, .skill3 p , .skill4 p{
+    .skillCard p{
         font-size: 2vw;
-
     }
-    .skill1 b, .skill2 b, .skill3 b , .skill4 b{
+    .skillCard b{
         font-size: 3vw;
     }
     

@@ -1,0 +1,35 @@
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: rgb(18, 18, 18);
+  overflow: visible;
+}
+
+.pages {
+  position: relative;
+  z-index: 0;
+  min-height: 100vh;
+}
+
+.bar {
+  position: fixed;
+  inset: 0;
+  background: rgb(18, 18, 18);
+  transform: translateY(-100%);
+  pointer-events: none;
+  z-index: 999;
+  transition: transform 520ms ease;
+}
+
+.cover {
+  transform: translateY(0);
+}
+
+.reveal {
+  transform: translateY(-100%);
+}
+
+.idle {
+  transform: translateY(-100%);
+}

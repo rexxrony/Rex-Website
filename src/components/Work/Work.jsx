@@ -47,41 +47,43 @@ export const Work = () => {
         <h2 className={styles.title}>Work Experience</h2>
         <hr className={styles.line} />
 
-        {jobs.map((job, idx) => (
-          <AnimatedContent
-            key={idx}
-            distance={90}
-            direction="vertical"
-            duration={0.8}
-            ease="power3.out"
-            initialOpacity={0}
-            animateOpacity
-            scale={0.97}
-            threshold={0.1}
-            delay={idx * 0.08}
-          >
-            <div className={styles['years-exp-container']}>
-              <div className={styles.topRow}>
-                <div className={styles.leftCol}>
-                  <div className={styles.year1}>
-                    {displayYear(job.start)}
-                    {job.end ? ` - ${displayYear(job.end)}` : ''}
+        <div className={styles.jobsList}>
+          {jobs.map((job, idx) => (
+            <AnimatedContent
+              key={`${job.company}-${idx}`}
+              distance={90}
+              direction="vertical"
+              duration={0.8}
+              ease="power3.out"
+              initialOpacity={0}
+              animateOpacity
+              scale={0.97}
+              threshold={0.1}
+              delay={idx * 0.08}
+            >
+              <div className={styles.workCard}>
+                <div className={styles['years-exp-container']}>
+                  <div className={styles.topRow}>
+                    <div className={styles.leftCol}>
+                      <div className={styles.year1}>
+                        {displayYear(job.start)}
+                        {job.end ? ` - ${displayYear(job.end)}` : ''}
+                      </div>
+                      <div className={styles.year2}>{formatDuration(job.start, job.end)}</div>
+                    </div>
+
+                    <div className={styles.centerCol} />
+
+                    <div className={styles.rightCol}>
+                      <div className={styles.company}>{job.company}</div>
+                      <div className={styles.domain}>{job.role}</div>
+                    </div>
                   </div>
-                  <div className={styles.year2}>{formatDuration(job.start, job.end)}</div>
-                </div>
-
-                <div className={styles.centerCol} />
-
-                <div className={styles.rightCol}>
-                  <div className={styles.company}>{job.company}</div>
-                  <div className={styles.domain}>{job.role}</div>
                 </div>
               </div>
-              <br />
-              <hr className={styles.line} />
-            </div>
-          </AnimatedContent>
-        ))}
+            </AnimatedContent>
+          ))}
+        </div>
       </div>
     </section>
   )

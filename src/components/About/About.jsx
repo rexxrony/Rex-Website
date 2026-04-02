@@ -6,8 +6,6 @@ import styles from './About.module.css'
 import aboutData from '../Datas/about.json'
 
 export const About = () => {
-  const skillClasses = ['skill1', 'skill2', 'skill3', 'skill4']
-
   return (
     <section id="about" className={styles.container}>
       <div className={styles.contents}>
@@ -44,7 +42,7 @@ export const About = () => {
         <ul className={styles.skills}>
           {aboutData.skills.map((skill, idx) => (
             <AnimatedContent
-              key={idx}
+              key={`${skill.title}-${idx}`}
               distance={80}
               direction="vertical"
               duration={0.8}
@@ -55,7 +53,7 @@ export const About = () => {
               threshold={0.1}
               delay={idx * 0.08}
             >
-              <li className={styles[skillClasses[idx]]}>
+              <li className={styles.skillCard}>
                 <b>{skill.title}</b>
                 <p>{skill.description}</p>
               </li>

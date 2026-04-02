@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import AnimatedContent from '../AnimatedContent/AnimatedContent'
 import styles from './MyProjects.module.css'
 import MyProj from '../Datas/myProj.json'
@@ -5,8 +6,42 @@ import { FaGithub } from 'react-icons/fa'
 
 
 export const MyProjects = () => {
+  const sectionRef = useRef(null)
+  const [scale, setScale] = useState(1)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = sectionRef.current
+      if (!section) return
+
+      const { top, height } = section.getBoundingClientRect()
+      const viewportHeight = window.innerHeight
+      const progress = Math.min(
+        Math.max((viewportHeight - top) / (viewportHeight + height), 0),
+        1
+      )
+      const nextScale = 1 + progress * 0.18
+      setScale(nextScale)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
+  }, [])
+
   return (
-    <section id="experience" className={styles.background}>
+    <section
+      ref={sectionRef}
+      id="experience"
+      className={styles.background}
+      style={{ '--bg-scale': scale }}
+    >
+      <div className={styles.backgroundLayer} />
+      <div className={styles.foreground}>
       <br />
       <br />
       <br />
@@ -49,6 +84,7 @@ export const MyProjects = () => {
       <br />
       <br />
       <br />
+      </div>
     </section>
   )
 }
