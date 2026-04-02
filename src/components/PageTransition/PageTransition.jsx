@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigationType } from 'react-router-dom'
 import gsap from 'gsap'
 import styles from './PageTransition.module.css'
 
@@ -10,6 +10,7 @@ export function PageTransition({ children }) {
   const hasMounted = useRef(false)
   const animation = useRef(null)
   const prevPath = useRef(location.pathname)
+  const navigationType = useNavigationType()
 
   useLayoutEffect(() => {
     if (!transitionRef.current) {
@@ -24,6 +25,15 @@ export function PageTransition({ children }) {
       hasMounted.current = true
       gsap.set(transitionRef.current, { autoAlpha: 1, xPercent: 0 })
       prevPath.current = location.pathname
+      return
+    }
+
+    const isRefreshOnHome =
+      navigationType === 'POP' && location.pathname === '/' && prevPath.current === '/'
+
+    if (isRefreshOnHome) {
+      prevPath.current = location.pathname
+      setDisplayLocation(location)
       return
     }
 
@@ -49,7 +59,7 @@ export function PageTransition({ children }) {
       timeline.kill()
       animation.current = null
     }
-  }, [location])
+  }, [location, navigationType])
 
   return (
     <div ref={transitionRef} className={styles.transitionWrapper} aria-live="polite">
